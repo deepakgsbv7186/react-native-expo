@@ -1,20 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { Switch, Text, View } from "react-native";
+import { useColorScheme } from "nativewind";
 
 export default function App() {
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View className="flex-1 justify-center items-center dark:bg-slate-800">
+      <Switch value={colorScheme === "dark"} onChange={toggleColorScheme} />
+      <Text className="text-[40px] font-bold dark:text-white">
+        React Expo TailWindCSS
+      </Text>
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
